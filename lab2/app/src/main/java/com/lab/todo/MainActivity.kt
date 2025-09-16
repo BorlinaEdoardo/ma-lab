@@ -1,4 +1,4 @@
-package com.example.todo
+package com.lab.todo
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
