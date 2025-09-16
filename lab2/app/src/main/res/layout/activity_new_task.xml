@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
 
+    <EditText
+        android:id="@+id/editText"
+        android:hint="Task name"
+        android:layout_width="match_parent"
+        android:layout_height="101dp" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="match_parent"
+        android:layout_height="127dp"
+        android:hint="Select date"
+        android:ems="10"
+        android:inputType="date"
+        android:clickable="true" />
 </LinearLayout>
