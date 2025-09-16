@@ -14,9 +14,15 @@
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:hint="Select date"
+        android:layout_height="104dp"
+        android:clickable="true"
         android:ems="10"
-        android:inputType="date"
-        android:clickable="true" />
+        android:hint="Enter task deadline"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:hint="Task description"
+        android:layout_width="match_parent"
+        android:layout_height="101dp" />
 </LinearLayout>

@@ -13,9 +13,9 @@ class HomeActivity : AppCompatActivity() {
         val addTaskBtn: Button = findViewById(R.id.addTaskBtn)
 
         // Navigate to NewTaskActivity
-      //  addTaskBtn.setOnClickListener {
-      //      val intent = Intent(this, NewTaskActivity::class.java)
-      //      startActivity(intent)
-    //    }
+        addTaskBtn.setOnClickListener {
+            val intent = Intent(this, NewTaskActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
