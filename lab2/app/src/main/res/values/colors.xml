@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FF808080</color>
     <color name="light_gray">#FFD3D3D3</color>
-    <color name="cardview_new_task_header_background">#e1ebfc</color>
+    <color name="cardview_new_task_header_background">#efecfc</color>
 </resources>
