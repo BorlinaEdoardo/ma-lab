@@ -1,28 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/createTaskHeader"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+
+        android:text="Create New Task"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+
+        android:background="@color/cardview_new_task_header_background"
+        android:textColor="@color/gray"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001" />
 
     <EditText
         android:id="@+id/editText"
-        android:hint="Task name"
-        android:layout_width="match_parent"
-        android:layout_height="101dp" />
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:autofillHints="Name"
+        android:hint="Enter task name"
+        android:inputType="text"
 
-    <EditText
-        android:id="@+id/editTextDate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+
+    <LinearLayout
+        android:id="@+id/datePickerContainer"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
-        android:clickable="true"
-        android:ems="10"
-        android:hint="Enter task deadline"
-        android:inputType="date" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.245">
+
+        <TextView
+            android:id="@+id/datePickerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select the deadline"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="8dp" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editTextDescription"
-        android:hint="Task description"
-        android:layout_width="match_parent"
-        android:layout_height="101dp" />
-</LinearLayout>
+        android:layout_width="351dp"
+        android:layout_height="100dp"
+        android:autofillHints="Description"
+        android:hint="Insert task description"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerContainer"
+        app:layout_constraintVertical_bias="0.1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

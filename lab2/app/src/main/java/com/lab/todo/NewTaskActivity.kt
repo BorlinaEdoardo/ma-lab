@@ -1,6 +1,7 @@
 package com.lab.todo
 
 import android.os.Bundle
+import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.EditText
 
@@ -10,9 +11,9 @@ class NewTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_task)
 
-        val userDate = findViewById<EditText>(R.id.editTextDate)
+        //val userDate = findViewById<DatePicker>(R.id.editTextDate)
 
-        val enteredText = userDate.text.toString()
+        //val enteredText = userDate.text.toString()
 
     }
 }
