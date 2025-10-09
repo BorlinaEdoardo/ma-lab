@@ -13,6 +13,7 @@ class NewTaskActivity : AppCompatActivity() {
 
         val titleInput: EditText = findViewById(R.id.taskTitle)
         val descriptionInput: EditText = findViewById(R.id.taskDescription)
+        val deadlinePicker: DatePicker = findViewById(R.id.taskDeadline)
         val doneBtn: Button = findViewById(R.id.doneBtn)
 
         val colorGroup: RadioGroup = findViewById(R.id.colorGroup)
