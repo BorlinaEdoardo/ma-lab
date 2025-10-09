@@ -7,9 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
 
 class NewTaskActivity : AppCompatActivity() {
+
+    private lateinit var dbHelper: TaskDatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_task)
+
+        dbHelper = TaskDatabaseHelper(this)
 
         val titleInput: EditText = findViewById(R.id.taskTitle)
         val descriptionInput: EditText = findViewById(R.id.taskDescription)
@@ -29,6 +34,13 @@ class NewTaskActivity : AppCompatActivity() {
             }
             val desc = descriptionInput.text?.toString()?.takeIf { it.isNotBlank() }
 
+            // deadline in milliseconds
+            val deadline = deadlinePicker.run {
+                val cal = java.util.Calendar.getInstance()
+                cal.set(year, month, dayOfMonth, 0, 0, 0)
+                cal.timeInMillis
+            }
+
             // Map selected radio to a color int
             val selectedId = colorGroup.checkedRadioButtonId
             val color = when (selectedId) {
@@ -39,7 +51,8 @@ class NewTaskActivity : AppCompatActivity() {
                 else -> Color.parseColor("#000000")
             }
 
-            TaskRepository.add(Task(title = title, description = desc, color = color))
+            //TaskRepository.add(Task(title = title, description = desc, color = color))
+            dbHelper.insertTask(Task(title = title, description = desc, color = color, deadline = deadline))
             finish()
         }
     }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var adapter: TaskAdapter
+    private lateinit var dbHelper: TaskDatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,12 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        dbHelper = TaskDatabaseHelper(this)
+
         // refresh list and show newly added items immediately
-        adapter.submit(TaskRepository.tasks)
+        //adapter.submit(TaskRepository.tasks)
+        adapter.submit(dbHelper.getAllTasks())
+
     }
 }
