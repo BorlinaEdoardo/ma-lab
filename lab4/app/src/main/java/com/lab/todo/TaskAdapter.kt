@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskVH>() {
 
+    var onItemClick: ((Task) -> Unit)? = null    // click lambda ~GK
     private val all = mutableListOf<Task>()
     private val visible = mutableListOf<Task>()
 
@@ -40,22 +42,27 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskVH>() {
         holder.bind(visible[position])
     }
 
-    class TaskVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TaskVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val card: CardView = itemView as CardView
         private val title: TextView = itemView.findViewById(R.id.taskTitleText)
         private val desc: TextView = itemView.findViewById(R.id.taskDescriptionText)
+        private val image: ImageView = itemView.findViewById<ImageView>(R.id.taskImageThumb) //added image ~GK
 
         fun bind(task: Task) {
             title.text = task.title
             desc.text = task.description ?: ""
-
-
             card.setCardBackgroundColor(task.color)
-
-
             title.setTextColor(android.graphics.Color.WHITE)
             desc.setTextColor(android.graphics.Color.WHITE)
+
+            //to handle image ~GK
+            if (task.imageUri.isNullOrBlank()) {
+                image.visibility = View.GONE
+            } else {
+                image.visibility = View.VISIBLE
+                image.setImageURI(android.net.Uri.parse(task.imageUri))
+            }
+            itemView.setOnClickListener { this@TaskAdapter.onItemClick?.invoke(task) }
         }
     }
-
 }
