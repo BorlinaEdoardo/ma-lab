@@ -38,6 +38,15 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        //to open edit screen with the selected task id ~GK
+        adapter.onItemClick = { task ->
+            task.id?.let {
+                val i = Intent(this, EditTaskActivity::class.java)
+                i.putExtra("task_id", it)
+                startActivity(i)
+            }
+        }
     }
 
     override fun onResume() {

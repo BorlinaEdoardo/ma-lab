@@ -50,9 +50,11 @@ class NewTaskActivity : AppCompatActivity() {
                 R.id.colorOrange -> Color.parseColor("#FF9800")
                 else -> Color.parseColor("#000000")
             }
+            //to add an image when user creates a task too ~GK
+            dbHelper.insertTask(
+                Task(title = title, description = desc, color = color, deadline = deadline)
+            )
 
-            //TaskRepository.add(Task(title = title, description = desc, color = color))
-            dbHelper.insertTask(Task(title = title, description = desc, color = color, deadline = deadline))
             finish()
         }
     }
