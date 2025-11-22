@@ -6,6 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'db_helper.dart';
 import 'models/task_item.dart';
 
+import 'package:sensors_plus/sensors_plus.dart';
+import 'dart:async';
+
 void main() {
   runApp(const TodoApp());
 }
@@ -229,6 +232,9 @@ class _TaskScreenState extends State<TaskScreen> {
 
   final picker = ImagePicker();
 
+  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  bool _isPopping = false;
+
   @override
   void initState() {
     super.initState();
@@ -273,6 +279,33 @@ class _TaskScreenState extends State<TaskScreen> {
     );
 
     Navigator.pop(context, data);
+  }
+
+  // Use sensors
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // tilt sensor to go back on tilt left
+    _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
+      if (event.x > 7 && !_isPopping) {
+        _isPopping = true;
+        Navigator.pop(context);
+      }
+    });
+
+    // on vertical shake take picture with camera
+    _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
+      if (event.y.abs() > 7) {
+        _pickImg(ImageSource.camera);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _accelerometerSubscription?.cancel();
+    super.dispose();
   }
 
   // ------------------------------------------------------------
