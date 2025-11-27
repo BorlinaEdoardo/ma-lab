@@ -296,7 +296,7 @@ class _TaskScreenState extends State<TaskScreen> {
 
     // on vertical shake take picture with camera
     _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
-      if (event.y.abs() > 7) {
+      if (event.y.abs() > 15) {
         _pickImg(ImageSource.camera);
       }
     });
